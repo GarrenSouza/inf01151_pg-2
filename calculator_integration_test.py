@@ -40,6 +40,52 @@ def calculator_client(channel):
     from calculator_pb2_grpc import CalculatorStub
     return CalculatorStub(channel)
 
+def test_divMod(calculator_client):
+    from calculator_pb2 import DivModRequest
+
+    # given
+    a = 7331
+    b = 234
+
+    expected = a//b , a%b
+
+    # when
+    result = calculator_client.DivMod(DivModRequest(a=a, b=b))
+    print(result)
+
+    # then
+    assert result.div, result.mod == expected
+
+def test_max3(calculator_client):
+    from calculator_pb2 import Max3Request
+
+    # given
+    a = 7331.23
+    b = -0.618
+    c = 4.20e69
+
+    expected = min(a,b,c)
+
+    # when
+    result = calculator_client.Max3(Max3Request(a=a, b=b, c=c))
+
+    # then
+    assert result.s == expected
+
+def test_multiply(calculator_client):
+    from calculator_pb2 import MultiplyRequest
+
+    # given
+    a = 7331.23
+    b = -0.618
+
+    expected = a * b
+
+    # when
+    result = calculator_client.Multiply(MultiplyRequest(a=a, b=b))
+
+    # then
+    assert result.s == expected
 
 def test_sum(calculator_client):
     from calculator_pb2 import SumRequest

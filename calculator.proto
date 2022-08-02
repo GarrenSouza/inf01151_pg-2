@@ -1,5 +1,7 @@
+
 syntax = "proto3";
 
+// Sum operation
 message SumRequest {
   double a = 1;
   double b = 2;
@@ -9,6 +11,42 @@ message SumReply {
   double s = 1;
 }
 
+// Multiplication operation
+message MultiplyRequest {
+  double a = 1;
+  double b = 2;
+}
+
+message MultiplyReply {
+  double s = 1;
+}
+
+// Max3 operation
+message Max3Request {
+  double a = 1;
+  double b = 2;
+  double c = 3;
+}
+
+message Max3Reply {
+  double s = 1;
+}
+
+// (Div, Mod) operation
+message DivModRequest {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+message DivModReply {
+  int32 div = 1;
+  int32 mod = 2;
+}
+
+// The whole calculator service
 service Calculator {
   rpc Sum (SumRequest) returns (SumReply);
+  rpc Multiply (MultiplyRequest) returns (SumReply);
+  rpc Max3 (Max3Request) returns (SumReply);
+  rpc DivMod (DivModRequest) returns (DivModReply);
 }

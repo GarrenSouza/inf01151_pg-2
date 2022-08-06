@@ -24,7 +24,7 @@ class Calculator(CalculatorServicer):
         return MultiplyReply(s=request.a * request.b)
 
     def Max3(self, request: Max3Request, context: ServicerContext) -> Max3Reply:
-        return Max3Reply(s=min(request.a, request.b, request.c))
+        return Max3Reply(s=max(request.a, request.b, request.c))
 
     def DivMod(self, request: DivModRequest, context: ServicerContext) -> DivModReply:
         return DivModReply(div=request.a//request.b, mod=request.a%request.b)

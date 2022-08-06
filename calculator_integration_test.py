@@ -64,7 +64,7 @@ def test_max3(calculator_client):
     b = -0.618
     c = 4.20e69
 
-    expected = min(a,b,c)
+    expected = max(a,b,c)
 
     # when
     result = calculator_client.Max3(Max3Request(a=a, b=b, c=c))
